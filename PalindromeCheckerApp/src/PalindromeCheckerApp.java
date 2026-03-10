@@ -1,9 +1,11 @@
+import java.util.Scanner;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class PalindromeCheckerApp {
+
     public static void main(String[] args) {
+
         // Create Scanner object
         Scanner sc = new Scanner(System.in);
 
