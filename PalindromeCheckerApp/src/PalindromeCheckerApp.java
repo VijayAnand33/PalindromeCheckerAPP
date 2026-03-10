@@ -24,10 +24,23 @@ when the program starts.
 public static void main(String[] args) {...}
  */
 
-public class PalindromeCheckerAPP1 {
-    public static void main(String args[]) {
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 1.0");
-        System.out.println("System initialized successfully");
+public class PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+
+        String word = "madam";
+        String reverse = "";
+
+        // Reverse the string
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reverse = reverse + word.charAt(i);
+        }
+
+        // Check palindrome
+        if (word.equals(reverse)) {
+            System.out.println(word + " is a Palindrome");
+        } else {
+            System.out.println(word + " is Not a Palindrome");
+        }
     }
 }
