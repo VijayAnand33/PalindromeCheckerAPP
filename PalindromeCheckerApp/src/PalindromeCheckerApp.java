@@ -1,44 +1,103 @@
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Scanner;
 
+class Node {
+    char data;
+    Node next;
+
+    Node(char data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
 public class PalindromeCheckerApp {
+
+    static Node head = null;
+
+    // Insert node at end
+    public static void insert(char c) {
+        Node newNode = new Node(c);
+
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+
+        temp.next = newNode;
+    }
+
+    // Reverse linked list
+    public static Node reverse(Node node) {
+        Node prev = null;
+        Node current = node;
+        Node next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+
+    // Check palindrome
+    public static boolean isPalindrome() {
+
+        if (head == null || head.next == null)
+            return true;
+
+        Node slow = head;
+        Node fast = head;
+
+        // Find middle
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Reverse second half
+        Node secondHalf = reverse(slow.next);
+
+        Node firstHalf = head;
+        Node tempSecond = secondHalf;
+
+        // Compare both halves
+        while (tempSecond != null) {
+            if (firstHalf.data != tempSecond.data) {
+                return false;
+            }
+            firstHalf = firstHalf.next;
+            tempSecond = tempSecond.next;
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
-        // Create Scanner object
+
         Scanner sc = new Scanner(System.in);
 
-        // Take input from user
         System.out.print("Enter a string: ");
-        String input = sc.nextLine();
+        String str = sc.nextLine();
 
-        // Create Deque (Double Ended Queue)
-        Deque<Character> deque = new LinkedList<>();
+        str = str.replaceAll("\\s+", "").toLowerCase();
 
-        // Insert characters into deque
-        for (int i = 0; i < input.length(); i++) {
-            deque.addLast(input.charAt(i));
+        // Convert string to linked list
+        for (char c : str.toCharArray()) {
+            insert(c);
         }
 
-        boolean isPalindrome = true;
-
-        // Remove first & last and compare
-        while (deque.size() > 1) {
-
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
-
-            if (front != rear) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Print result
-        if (isPalindrome) {
+        if (isPalindrome())
             System.out.println("The given string is a Palindrome.");
-        } else {
+        else
             System.out.println("The given string is NOT a Palindrome.");
-        }
 
         sc.close();
     }
