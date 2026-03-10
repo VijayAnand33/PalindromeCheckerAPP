@@ -1,46 +1,31 @@
-/*
-* =========================================
-* MAIN CLASS UseCase1Palindrome App
-* =========================================
-* Use Case 1: Application Entry & Welcome Message
-* Description:
-* This class represents the entry point of the
-* Palindrome Checker Management System.
-* At this stage, the application:
-* Starts execution from the main() method
-* Displays a welcome message
-* Shows application version
-* No palindrome logic is implemented yet.
-* The goal is to establish a clear startup flow.
-  @author Vijay Anand D S
-  @version 1.0
-
-public class UseCase1PalindromeCheckerApp
-/**
-Application entry point.
-This is the first method executed by the JVM
-when the program starts.
-* @param args Command-Line arguments
-public static void main(String[] args) {...}
- */
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String original = "level";
+        // Create Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // Take input from user
+        System.out.print("Enter a string: ");
+        String original = sc.nextLine();
+
+        // Variable to store reversed string
         String reversed = "";
 
-        // Reverse the string using loop
-        for(int i = original.length() - 1; i >= 0; i--) {
+        // Reverse string using for loop
+        for (int i = original.length() - 1; i >= 0; i--) {
             reversed = reversed + original.charAt(i);
         }
 
         // Compare original and reversed string
-        if(original.equals(reversed)) {
-            System.out.println(original + " is a Palindrome");
+        if (original.equals(reversed)) {
+            System.out.println("The given string is a Palindrome.");
         } else {
-            System.out.println(original + " is Not a Palindrome");
+            System.out.println("The given string is NOT a Palindrome.");
         }
+
+        sc.close();
     }
 }
