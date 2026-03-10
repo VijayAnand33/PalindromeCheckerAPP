@@ -1,7 +1,5 @@
 public class PalindromeCheckerApp {
-
     public static void main(String[] args) {
-
         String word = "radar";
         char[] arr = word.toCharArray();
 
@@ -19,7 +17,7 @@ public class PalindromeCheckerApp {
         }
 
         if (isPalindrome) {
-            System.out.println(word + " is a Palindrome");
+            System.out.println(word + " is a Palindrome ");
         } else {
             System.out.println(word + " is Not a Palindrome");
         }
